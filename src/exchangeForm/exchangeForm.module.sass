@@ -13,10 +13,15 @@
 
 .selFields
     display: flex
+    flex-wrap: wrap
     width: 100%
-    justify-content: space-between
+    justify-content: center
+    gap: 2rem
     align-items: center
     margin: 5rem 25rem
+    @media (min-width: 80rem)
+        justify-content: space-between
+        gap: 0
 
 .amount
     display: flex
@@ -36,16 +41,23 @@
 
 .selContainer
     display: flex
-    justify-content: space-between
+    flex-wrap: wrap
+    justify-content: center
     align-items: center
     gap: 1rem
     width: 20.375rem
     margin: 2rem 0
+    @media (min-width: 80rem)
+        justify-content: space-between
 
     h2
+        flex-basis: 100%
         font-size: 1.375rem
         font-weight: bold
+        text-align: center
         text-shadow: 0 .25rem .25rem #00000025
+        @media (min-width: 80rem)
+            flex-basis: auto
 
 .sel
     position: relative
@@ -79,8 +91,12 @@
 .arrow
     background-image: url("../assets/rightArrow.png")
     background-size: 3.625rem 1.5625rem
+    background-repeat: no-repeat
     height: 1.5625rem
     width: 3.625rem
+    rotate: 90deg
+    @media (min-width: 80rem)
+        rotate: 0deg
 
 .result
     outline: none
@@ -110,3 +126,10 @@
         box-shadow: 0 .25rem .25rem #00000025
         color: #FFFFFF
         cursor: pointer
+
+.resBox
+    display: flex
+    justify-content: center
+    width: 100%
+    @media (min-width: 80rem)
+        width: auto

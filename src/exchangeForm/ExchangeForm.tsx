@@ -20,7 +20,7 @@ function ExchangeForm() {
   const [currency2, setCurrency2] = useState(0);
   const [currencyCode, setCurrencyCode] = useState("");
   const [result, setResult] = useState("");
-  const [isCalculated, setIsCalculated] = useState(false)
+  const [isCalculated, setIsCalculated] = useState(false);
   const hasCurrenciesData = Object.keys(currencies.rates || {}).length > 0;
   const apiKey =
     "https://api.currencybeacon.com/v1/latest?api_key=qrnbYMImZUP0BgTRSEvfq8fQmJSDuHOR";
@@ -46,11 +46,16 @@ function ExchangeForm() {
 
   const calculateExchange = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const equation1 = currency1 / amount;
-    const equation2 = currency2 / equation1;
-    const formattedNumber = equation2.toFixed(2);
-    setResult(`${formattedNumber} ${currencyCode}`);
-    setIsCalculated(true);
+    if (amount > 0) {
+      const equation1 = currency1 / amount;
+      const equation2 = currency2 / equation1;
+      const formattedNumber = equation2.toFixed(2);
+      setResult(`${formattedNumber} ${currencyCode}`);
+      setIsCalculated(true);
+      window.alert;
+    } else {
+      window.alert("Wprowadź poprawną kwotę");
+    }
   };
 
   const resultStyle = {
@@ -65,7 +70,7 @@ function ExchangeForm() {
 
         const currencyCodes = Object.keys(result.rates);
         const initialCurrencyCode1 = currencyCodes[0];
-        const initialCurrencyCode2 = currencyCodes[1];
+        const initialCurrencyCode2 = currencyCodes[0];
 
         setCurrency1(result.rates[initialCurrencyCode1]);
         setCurrency2(result.rates[initialCurrencyCode2]);
@@ -123,7 +128,7 @@ function ExchangeForm() {
               </div>
             </div>
             <div className={styles.arrow}></div>
-            <div>
+            <div className={styles.resBox}>
               <textarea
                 className={styles.result}
                 style={resultStyle}
